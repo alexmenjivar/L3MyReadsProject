@@ -11,9 +11,9 @@ class Bookshelf extends React.Component {
                   <div className="bookshelf-books">
                     <ol className="books-grid">
           				{
-          					books.filter(book => book.shelf === shelf).map((item) =>
-                            <li key={item.id}>
-                                <Book book={item} refetch={refetch}/>
+          					books.filter(book => book.shelf === shelf).map((book) =>
+                            <li key={book.id}>
+                                <Book book={book} refetch={refetch}/>
                             </li>)
           				}
                     </ol>
