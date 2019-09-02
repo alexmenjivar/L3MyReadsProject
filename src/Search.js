@@ -28,10 +28,15 @@ class Search extends React.Component {
 
   render() {
     const { books } = this.state;
+
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <Link className="close-search" to="/" onClick={()=>this.props.refetch()} >
+          <Link
+            className="close-search"
+            to="/"
+            onClick={() => this.props.refetch()}
+          >
             Close
           </Link>
           <div className="search-books-input-wrapper">

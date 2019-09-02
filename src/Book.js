@@ -19,6 +19,7 @@ class Book extends React.Component {
     const { book, refetch } = this.props;
     const width = 128;
     const height = 193;
+
     return (
       <div className="book">
         <div className="book-top">

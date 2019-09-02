@@ -65,7 +65,7 @@ class BooksApp extends React.Component {
 
         <Route
           path="/search"
-          render={() => <Search refetch={this.fetchAll}/>}
+          render={() => <Search booksOnShelves={this.state.books} refetch={this.fetchAll}/>}
         />
       </div>
     );
