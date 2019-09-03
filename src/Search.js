@@ -20,15 +20,30 @@ class Search extends React.Component {
       }),
       () => {
         BooksAPI.search(this.state.query).then(books => {
-          this.setState({ books });
+          books && books.length > 0
+            ? this.setState({
+                books: this.mergedProcess(books, this.props.booksOnShelves)
+              })
+            : console.log("empty array");
         });
       }
     );
   };
 
+  mergedProcess = (booksFromSearch, booksOnShelves) => {
+    let booksMerged = booksFromSearch.map(bookFromSearch => {
+      return booksOnShelves.reduce((book, bookOnShelf) => {
+        if (bookOnShelf.id === bookFromSearch.id) {
+          return bookOnShelf;
+        }
+        return book;
+      }, bookFromSearch);
+    });
+    return booksMerged;
+  };
+
   render() {
     const { books } = this.state;
-
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -50,13 +65,11 @@ class Search extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books && books.length > 0
-              ? books.map(book => (
-                  <li key={book.id}>
-                    <Book book={book} />
-                  </li>
-                ))
-              : console.log("empty array")}
+            {books.map(book => (
+              <li key={book.id}>
+                <Book book={book} />
+              </li>
+            ))}
           </ol>
         </div>
       </div>
